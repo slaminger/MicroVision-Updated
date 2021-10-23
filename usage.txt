@@ -1,0 +1,20 @@
+Code usage:
+Page  0 : $000 :  1 free
+Page  1 : $040 :  0 free
+Page  2 : $080 :  1 free
+Page  3 : $0c0 :  2 free
+Page  4 : $100 : 14 free
+Page  5 : $140 : 41 free
+Page 15 : $3c0 :  1 free
+Page 16 : $400 :  7 free
+Page 17 : $440 : 10 free
+Page 18 : $480 :  4 free
+Page 19 : $4c0 :  2 free
+Page 20 : $500 :  2 free
+Page 21 : $540 :  0 free
+Page 22 : $580 :  1 free
+Page 23 : $5c0 : 32 free
+Page 24 : $600 :  0 free
+Page 25 : $640 : 10 free
+Page 26 : $680 : 24 free
+Used 1000 bytes (48 %)

@@ -1,0 +1,17 @@
+BUILD 15
+--------
+
+* Allow passing in of screen res and full screen from the command line. Format is <width>x<height>x<fullscreen> where fullscreen = 1 for full and 0 for windowed.
+* The Enter/Return key now toggles fullscreen.
+* Emulator now chooses optimal size for playfield plus overlay based on the screen size.
+* Default screen to 800x600 windowed.
+* Add 1 pixel gap between pixels on LCD display.
+* Lighten the LCD pixel color so it is a closer match to actual LCD black.
+* Added overlays for all games. These are based on the American editions of the carts except for Super Blockbuster. Replaced the one by Paul Robson for Pinball.
+* Load snaps of carts and display on the side at full screen height.
+* Overlay key mappings on top of the snaps.
+* Created new snaps for the two homebrew games by Paul Robson.
+* Added linear filtering to textures for smoother images.
+* Slide playfield over so that both always fit.
+* There is now a knob that represents the range of motion for the paddle, rather than just the bar.
+* Made the existing bar-shaped render of knob position have alpha transparency, so it would blend into the overlays.
