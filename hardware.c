@@ -17,8 +17,7 @@
 #include "hardware.h"
 #include "hwinterface.h"
 #include "debugsc11.h"
-#include <c:/MINGW/MINGW_DEV_LIB/INCLUDE/SDL2/SDL.h>
-
+#include <SDL2/SDL.h>
 #include "font.h"                                                                       // 5 x 7 font data.
 
 #define SOUND                                                                           // Sound enabled in this SDL interface
