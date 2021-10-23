@@ -23,7 +23,9 @@ Build 15 source is usually called mvem_dev.zip. My version has CRC32 checksum (0
 The .bmp files used for the overlays can be copied over from the Windows release of MVEM build 15. My version is called MVEM.zip and has the CRC32 checksum (B30EB4D0)
 END OF EDIT BLOCK
 There is another distribution marked as the complete project that actually only contains Build 12. The main difference that I can see is that Build 12 does not have the ability to change the screen size in the command-line input.
+
 Part 1: Compilation
+
 I was able to compile via GCC 4.9.2, available standard under Raspbian Jessie. No need to go to Raspbian Stretch to grab GCC5+ as with later MAME versions.
 Aside from this, the only prerequisite appears to be SDL2, judging by the information in the Makefile.
 Once you have the source code, you will need to choose a directory (i.e /home/pi/mvem and place everything there). Here is a list of source files from the version I have along with CRC32 checksums.
@@ -69,13 +71,17 @@ EDIT BLOCK RELEVANT TO BUILD 15
 Here are the warnings I got from compiling Build 15. My version appears to work properly in spite of these warnings.
 gcc -o mvem main.c hardware.c core11.c debugsc11.c system.c hwinterface.c -std=c99 -g -O2 -DDEBUGGABLE -D_THREAD_SAFE -I/usr/local/include/SDL2 -I/usr/X11R6/include  -I/usr/X11/include -DHAVE_OPENGL -g -lSDL2_test -L/usr/local/lib -lSDL2 hardware.c: In function ‘IF_Initialise’: hardware.c:85:17: warning: implicit declaration of function ‘IF_ToggleFullscree ’ [-Wimplicit-function-declaration]      if (f == 1) IF_ToggleFullscreen();                  ^~~~~~~~~~~~~~~~~~~ hardware.c: At top level: hardware.c:155:6: warning: conflicting types for ‘IF_ToggleFullscreen’  void IF_ToggleFullscreen(SDL_Window* Window) {       ^~~~~~~~~~~~~~~~~~~ hardware.c:85:17: note: previous implicit declaration of ‘IF_ToggleFullscreen’ was here      if (f == 1) IF_ToggleFullscreen();                  ^~~~~~~~~~~~~~~~~~~ In file included from core11.c:38:0: core11.c: In function ‘tms1100reset’: code11.h:18:31: warning: iteration 128 invokes undefined behavior [-Waggressive-loop-optimizations]      dataMemory[i] = dataMemory[i] & 0xF;                      ~~~~~~~~~~^~~ code11.h:17:2: note: within this loop for (i = 0;i <= 0x80;i++)   ^~~ 
 END OF EDIT BLOCK
+
 If compilation fails, then it is most likely that you are missing GCC or SDL2. As far as I know, those are the only two requirements here. My original installation was several months ago, so I may have forgotten something. However, I performed a fresh compilation when writing this tutorial. 4  
 
 Part 2: Running MVEM
+
 Once compilation is complete, you can use the following command format to run MVEM (Build 14). Build 12 users will need to remove the <screen_size> part, as that is not available in that build.
 ./mvem <rom_filename> <screen_size>./mvem "bomber.bin" 640x480 
 At this point, a more advanced user might be done listening to me and simply follow the RetroPie tutorial for adding an external emulator. However, I will continue to describe my RetroPie configuration process and provide the checksums for all known game files that work with MVEM.
+
 Part 3: Configuring RetroPie for MVEM
+
 First, You will need to find your es_systems.cfg file
 /etc/emulationstation/es_systems.cfg is the default
 You will need to add the following code inside the <systemList></systemList> tags, but outside of any other tags. You will also need to change the PATH to match your directory. I highly recommend you store your games and emulator executable in the same directory.
@@ -91,6 +97,7 @@ retroarch.cfg:
 At this point, you should be able to restart emulation station and have a new section for the microvision with all of your *.bin files visible. 1  
 
 Part 4: Controlling the Emulator
+
 The controls are hardcoded:
 Escape is used to exit.
 The analog control can use either the mouse movement left and right or O and P.
@@ -103,7 +110,9 @@ S single step
 V step over
 M return to monitor (if running)
 Esc exits the debugger
+
 Part 5: Notes on ROMS and MVEM configuration
+
 I recommend sticking with the 640x480 game area at the maximum. It is large enough to be clearly visible to me, and with 16x16 square pixels on the screen, you don't have to worry about missing detail. The main problem with increasing the game area is that there is a separate row below the game area that shows the current position of the analog control. If the game area is made larger than 640x480, this row will overlap the game area. As the source code has been released, this may be fixable, but I don't know how to do it.
 EDIT BLOCK RELEVANT TO BUILD 15
 Build 15 users are able to select larger screen sizes. I currently use 1280x720x1 for my screen size value.
@@ -145,6 +154,7 @@ speed.bin (67A53F5E)
 Test(Paul Robson)(2014):
 test.bin (A64065F9)
 Once you have these files, you can rename them as you wish. However, you may wish to leave pinball.bin as is. The pinball.bin uses a separate pinball.bmp for a background, which is included with the source code. If pinball.bin is renamed, this background will not show up when running the game. This background is not required to run the game, but the game logic makes much more sense with the background.
+
 EDIT BLOCK RELEVANT TO BUILD 15:
 The file naming scheme has changed in Build 15. I have not fully tested file renaming. I would recommend sticking with the names from Raph Koster's distribution, as the emulator appears to use these names to determine which .bmp images to load for the controller and screen overlays.
 Also, there is an ongoing bug where certain .bmp images (controller, key hints, and knob) will not appear if you are loading MVEM after booting the Raspberry Pi straight to Emulation Station. This is fixable by exiting Emulation Station, running and exiting MVEM on any game and then reopening Emulation Station. This appears to be a problem with SDL-based external emulators and RetroPie/Emulation Station.
