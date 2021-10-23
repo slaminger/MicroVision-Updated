@@ -149,3 +149,7 @@ EDIT BLOCK RELEVANT TO BUILD 15:
 The file naming scheme has changed in Build 15. I have not fully tested file renaming. I would recommend sticking with the names from Raph Koster's distribution, as the emulator appears to use these names to determine which .bmp images to load for the controller and screen overlays.
 Also, there is an ongoing bug where certain .bmp images (controller, key hints, and knob) will not appear if you are loading MVEM after booting the Raspberry Pi straight to Emulation Station. This is fixable by exiting Emulation Station, running and exiting MVEM on any game and then reopening Emulation Station. This appears to be a problem with SDL-based external emulators and RetroPie/Emulation Station.
 END OF EDIT BLOCK
+
+
+More information:
+https://www.raphkoster.com/2017/05/07/microvision-emulator-release/
